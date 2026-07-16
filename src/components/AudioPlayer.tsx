@@ -142,6 +142,11 @@ interface ClassicTrack {
   melodyNotes: Record<number, string>;
   patternLength: number;
   audioUrl: string;
+  album: string;
+  recordingYear: number;
+  recordLabel: string;
+  sourcePlatform: string;
+  signatureExcerpt: string;
 }
 
 const CLASSIC_TRACKS: ClassicTrack[] = [
@@ -169,7 +174,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       0: "Bb4", 2: "G4", 4: "Ab4", 6: "Bb4", 8: "C5", 10: "Bb4", 12: "G4", 14: "Eb4"
     },
-    patternLength: 16
+    patternLength: 16,
+    album: "West End Blues (Single)",
+    recordingYear: 1928,
+    recordLabel: "Okeh Records (Decca)",
+    sourcePlatform: "Internet Archive (78 RPM Digital Archive)",
+    signatureExcerpt: "开场惊世骇俗的无伴奏小号Solo独奏引子 (Opening Virtuoso Trumpet Cadenza)"
   },
   {
     id: "take-the-a-train",
@@ -193,7 +203,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       0: "G4", 2: "E5", 3: "D5", 5: "C5", 8: "A4", 10: "F#5", 11: "E5", 13: "D5"
     },
-    patternLength: 16
+    patternLength: 16,
+    album: "Take the 'A' Train (Single)",
+    recordingYear: 1941,
+    recordLabel: "Victor Records",
+    sourcePlatform: "Internet Archive (78 RPM Preservation Project)",
+    signatureExcerpt: "经典且广为人知的“大乐团铜管切分与萨克斯声部齐奏主题”"
   },
   {
     id: "ornithology",
@@ -217,7 +232,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       0: "G4", 1: "F#4", 2: "G4", 3: "A4", 4: "Bb4", 5: "A4", 6: "Bb4", 7: "C5", 8: "D5", 9: "C5", 10: "Bb4", 11: "A4", 12: "G4", 13: "F4", 14: "E4", 15: "D4"
     },
-    patternLength: 16
+    patternLength: 16,
+    album: "Ornithology (Single)",
+    recordingYear: 1946,
+    recordLabel: "Dial Records",
+    sourcePlatform: "Internet Archive (Classic 78 RPM Sessions)",
+    signatureExcerpt: "查利·帕克与迈尔斯·戴维斯标志性的“极速波普不协和齐奏跑音主题”"
   },
   {
     id: "take-five",
@@ -242,7 +262,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       0: "Bb4", 2: "Gb4", 3: "Ab4", 4: "Bb4", 6: "Ab4", 8: "Gb4"
     },
-    patternLength: 10
+    patternLength: 10,
+    album: "Time Out",
+    recordingYear: 1959,
+    recordLabel: "Columbia Records",
+    sourcePlatform: "Spotify Preview / Official Audio Feed",
+    signatureExcerpt: "标志性的 5/4 奇数拍爵士钢琴低沉和声循环与轻盈鼓点律动"
   },
   {
     id: "so-what",
@@ -264,7 +289,43 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
       0: "D2", 1: "E2", 2: "F2", 3: "G2", 4: "A2", 6: "D3", 7: "C3", 8: "A2", 9: "C3", 10: "B2", 11: "G2", 12: "A2"
     },
     melodyNotes: {},
-    patternLength: 16
+    patternLength: 16,
+    album: "Kind of Blue",
+    recordingYear: 1959,
+    recordLabel: "Columbia Records",
+    sourcePlatform: "Spotify Preview / Official Audio Feed",
+    signatureExcerpt: "开头最著名的“低音大提琴Solo发问 + 钢琴两声和声‘So What’回应 + 迈尔斯·戴维斯第一句号角”"
+  },
+  {
+    id: "my-favorite-things",
+    title: "My Favorite Things",
+    chineseTitle: "我的至爱",
+    artist: "John Coltrane",
+    chineseArtist: "约翰·柯川",
+    decade: 1960,
+    style: "Modal Jazz",
+    styleChinese: "前卫调式爵士",
+    tempo: 138,
+    description: "1960年录制，柯川在考珀（Soprano）萨克斯上的旷世炫技。将百老汇通俗插曲重构为充满宗教神圣感的东方色彩调式冥想。",
+    audioUrl: "https://archive.org/download/lp_my-favorite-things_john-coltrane/lp_my-favorite-things_john-coltrane_vbr.mp3",
+    chords: {
+      0: ["E4", "G4", "B4", "D5"],
+      4: ["C4", "E4", "G4", "B4"],
+      8: ["A3", "C4", "E4", "G4"],
+      12: ["F#4", "A4", "C5", "E5"]
+    },
+    bassNotes: {
+      0: "E2", 4: "C2", 8: "A2", 12: "F#2"
+    },
+    melodyNotes: {
+      0: "B4", 2: "E5", 4: "B4", 6: "E5", 8: "F#5", 10: "E5", 12: "D#5", 14: "B4"
+    },
+    patternLength: 16,
+    album: "My Favorite Things",
+    recordingYear: 1960,
+    recordLabel: "Atlantic Records",
+    sourcePlatform: "Atlantic Records Official Audio",
+    signatureExcerpt: "高音萨克斯以 3/4 拍华丽盘旋，在狂风骤雨的和弦铺垫中吹出经典主旋律段落"
   },
   {
     id: "girl-from-ipanema",
@@ -290,7 +351,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       0: "G4", 2: "F4", 4: "G4", 6: "F4", 8: "G4", 10: "F4", 12: "D4"
     },
-    patternLength: 16
+    patternLength: 16,
+    album: "Getz/Gilberto",
+    recordingYear: 1963,
+    recordLabel: "Verve Records",
+    sourcePlatform: "Verve Records Official Audio / Spotify Preview",
+    signatureExcerpt: "温暖慵懒的古典吉他切分前奏与João Gilberto经典的首句葡萄牙语温和低吟"
   },
   {
     id: "chameleon",
@@ -314,7 +380,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       3: "F4", 5: "Ab4", 6: "Bb4", 8: "Ab4", 11: "F4", 13: "Eb4"
     },
-    patternLength: 16
+    patternLength: 16,
+    album: "Head Hunters",
+    recordingYear: 1973,
+    recordLabel: "Columbia Records",
+    sourcePlatform: "Columbia Legacy Official Audio",
+    signatureExcerpt: "经典的 ARP Odyssey 模拟合成器肥厚贝斯Loop，一听即入迷的太空放克律动"
   },
   {
     id: "strasbourg-st-denis",
@@ -340,7 +411,12 @@ const CLASSIC_TRACKS: ClassicTrack[] = [
     melodyNotes: {
       0: "C5", 2: "Bb4", 4: "G4", 6: "F4", 8: "G4", 10: "F4", 12: "Eb4", 14: "C4"
     },
-    patternLength: 16
+    patternLength: 16,
+    album: "Earfood",
+    recordingYear: 2008,
+    recordLabel: "Emarcy Records / Universal Music",
+    sourcePlatform: "Spotify Preview / Licensed Official Audio Feed",
+    signatureExcerpt: "当代极具传染性的冷峻、洒脱而温暖的小号与萨克斯精妙齐奏主题"
   }
 ];
 
@@ -885,10 +961,10 @@ export default function AudioPlayer({
         </div>
 
         {/* METADATA & PLAYER CONTROL HUB (7 COLS) */}
-        <div className="md:col-span-7 flex flex-col justify-between h-full min-h-[145px] gap-2.5">
+        <div className="md:col-span-7 flex flex-col justify-between h-full gap-3">
           
           {/* TRACK METADATA BOX */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-[#C9A227] bg-[#C9A227]/10 border border-[#C9A227]/20 px-2 py-0.5 rounded">
                 {playerMode === "classic" ? `${activeTrack.decade}s · ${activeTrack.style}` : `Live Preset · ${cityName}`}
@@ -908,9 +984,49 @@ export default function AudioPlayer({
                 <span>{cityName}即兴和弦律动</span>
               )}
             </h4>
-            <p className="text-[10px] text-zinc-400 leading-normal line-clamp-2">
+            
+            <p className="text-[10.5px] text-zinc-300 leading-normal">
               {playerMode === "classic" ? activeTrack.description : `根据当前选定城市的新浪潮与乐理演化，实时合成 ${preset === "modal-blue" ? "纽约冷调式 9/11级进" : preset === "bossa-breeze" ? "里约波萨诺瓦桑巴" : preset === "traditional" ? "传统新奥尔良拉格泰姆" : "经典黑胶摇摆乐"}。`}
             </p>
+
+            {/* HIGH-FIDELITY HISTORICAL METADATA CARD */}
+            {playerMode === "classic" && (
+              <div className="bg-zinc-950/70 border border-[#C9A227]/15 p-3 rounded-lg space-y-2 text-[10.5px] leading-relaxed shadow-lg">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1.5">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-zinc-500 font-medium shrink-0">演奏家:</span>
+                    <span className="text-zinc-100 font-bold truncate">{activeTrack.chineseArtist}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-zinc-500 font-medium shrink-0">年份:</span>
+                    <span className="text-[#C9A227] font-mono font-bold">{activeTrack.recordingYear}年</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 min-w-0 sm:col-span-2">
+                    <span className="text-zinc-500 font-medium shrink-0">专辑:</span>
+                    <span className="text-zinc-100 font-medium italic truncate">《{activeTrack.album}》</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-zinc-500 font-medium shrink-0">厂牌:</span>
+                    <span className="text-zinc-300 truncate">{activeTrack.recordLabel}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-zinc-500 font-medium shrink-0">平台:</span>
+                    <span className="text-zinc-300 truncate font-mono text-[9px]">{activeTrack.sourcePlatform}</span>
+                  </div>
+                </div>
+
+                {/* SIGNATURE EXCERPT DESIGN */}
+                <div className="border-t border-[#C9A227]/10 pt-2 mt-1 flex flex-col gap-1">
+                  <span className="text-[9px] font-mono font-extrabold text-[#C9A227] tracking-widest uppercase flex items-center gap-1">
+                    <Sparkles className="w-2.5 h-2.5 text-amber-500 shrink-0" />
+                    <span>招牌金句乐段 (Signature Excerpt)</span>
+                  </span>
+                  <p className="text-[10px] text-zinc-400 italic bg-black/30 px-2 py-1.5 rounded border-l-2 border-[#C9A227]/60 leading-relaxed">
+                    “{activeTrack.signatureExcerpt}”
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* SEQUENCER LIGHTS & VISUALIZERS */}

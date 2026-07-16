@@ -16,6 +16,15 @@ export interface City {
   audioPreset: string; // The synthetic music generator preset name
 }
 
+export interface JazzConnection {
+  targetId: string; // ID of musician, club, city, style, record label, etc.
+  targetType: "musician" | "city" | "club" | "label" | "album" | "style";
+  targetName: string; // Display name
+  targetChineseName: string; // Display chinese name
+  type: "teacher" | "collaborator" | "same_band" | "recording_session" | "inspiration" | "contemporary" | "rival" | "same_label" | "same_city" | "same_style" | "venue";
+  description: string; // Explaining the connection e.g. "共同灌录《Kind of Blue》"
+}
+
 export interface Musician {
   id: string;
   name: string;
@@ -33,6 +42,8 @@ export interface Musician {
   }[];
   influencedBy: string[]; // Musician IDs
   collaborators: string[]; // Musician IDs
+  connections?: JazzConnection[];
+  isHiddenGem?: boolean;
 }
 
 export interface Club {
@@ -411,6 +422,242 @@ export const musicians: Musician[] = [
     ],
     influencedBy: [],
     collaborators: ["gerry-mulligan"]
+  },
+  {
+    id: "mccoy-tyner",
+    name: "McCoy Tyner",
+    chineseName: "麦考伊·泰纳",
+    birthYear: 1938,
+    deathYear: 2020,
+    instrument: "Piano (钢琴)",
+    birthplace: "Philadelphia, USA",
+    style: "Modal Jazz / Post-Bop",
+    shortBio: "约翰·柯川“经典四重奏”的钢琴之魂。他以雷霆万钧的强力左手“五度和弦（Quartal Voicings）”和如流水般的右手五声音阶即兴，彻底奠定了调式爵士与后波普时期的钢琴演奏标准，为柯川火山喷发般的即兴提供了坚如磐石的和声托盘。",
+    keyAlbums: [
+      { title: "The Real McCoy", year: 1967, description: "离开柯川乐团后的首张个人经典神盘，极具力量感的现代后波普里程碑。" },
+      { title: "Fly with the Wind", year: 1976, description: "融入弦乐编制的交响调式爵士史诗，大开大合，波澜壮阔。" }
+    ],
+    influencedBy: ["thelonious-monk", "bud-powell"],
+    collaborators: ["john-coltrane", "elvin-jones", "wayne-shorter"]
+  },
+  {
+    id: "elvin-jones",
+    name: "Elvin Jones",
+    chineseName: "埃尔文·琼斯",
+    birthYear: 1927,
+    deathYear: 2004,
+    instrument: "Drums (鼓手)",
+    birthplace: "Pontiac, Michigan, USA",
+    style: "Modal Jazz / Post-Bop / Hard Bop",
+    shortBio: "爵士鼓史上的超级革命者。他彻底打破了爵士鼓纯作节拍器的传统，创造了石破天惊的“多节奏复律动（Polyrhythms）”。在柯川黄金四重奏中，他用狂暴而又无比细腻的多重节拍对位，与柯川的萨克斯形成了如同风暴与雷电交织的史诗对话。",
+    keyAlbums: [
+      { title: "Puttin' It Together", year: 1968, description: "展示无钢琴编制下，纯粹打击律动与萨克斯对峙的张力杰作。" }
+    ],
+    influencedBy: ["art-blakey", "max-roach"],
+    collaborators: ["john-coltrane", "mccoy-tyner", "wayne-shorter"]
+  },
+  {
+    id: "pharoah-sanders",
+    name: "Pharoah Sanders",
+    chineseName: "法老·桑德斯",
+    birthYear: 1940,
+    deathYear: 2022,
+    instrument: "Tenor Saxophone (次中音萨克斯)",
+    birthplace: "Little Rock, Arkansas, USA",
+    style: "Spiritual Jazz / Free Jazz",
+    shortBio: "精神爵士（Spiritual Jazz）的终极使者。在柯川生命最后一期与他并肩咆哮。他的萨克斯吹奏融合了嘶吼、多音和极限高音过载，将乐器化作宗教救赎的喇叭。他的代表作《The Creator Has a Master Plan》是长达三十分钟的狂野而极乐的宇宙旅行。",
+    keyAlbums: [
+      { title: "Karma", year: 1969, description: "精神爵士史上的终极至宝，在狂暴喧嚣的自由咆哮中流淌出对宇宙大爱的极乐吟唱。" },
+      { title: "Promises", year: 2021, description: "晚年与伦敦电子音乐人Floating Points及伦敦交响乐团的跨界神作，极具极简主义冥想之美。" }
+    ],
+    influencedBy: ["john-coltrane"],
+    collaborators: ["john-coltrane", "alice-coltrane"]
+  },
+  {
+    id: "wayne-shorter",
+    name: "Wayne Shorter",
+    chineseName: "韦恩·肖特",
+    birthYear: 1933,
+    deathYear: 2023,
+    instrument: "Tenor & Soprano Saxophone (次中音/高音萨克斯)",
+    birthplace: "Newark, New Jersey, USA",
+    style: "Modal Jazz / Post-Bop / Fusion",
+    shortBio: "爵士作曲“第一智者”，迈尔斯·戴维斯“第二伟大五重奏”的创作大脑。他的曲子充满迷宫般的和声走势与神秘幽邃的哲学意境。从Art Blakey的硬波普，到戴维斯五重奏的调式写意，再到Weather Report的电气融合爵士，他是长盛不衰的现代探索者。",
+    keyAlbums: [
+      { title: "Speak No Evil", year: 1966, description: "后波普时代的传世至宝，神秘、优雅、极具和声内省的写意巅峰。" },
+      { title: "Heavy Weather", year: 1977, description: "Weather Report乐团的白金唱片，创造了极具律动与先锋质感的电气融合爵士里程碑。" }
+    ],
+    influencedBy: ["john-coltrane", "lester-young"],
+    collaborators: ["miles-davis", "herbie-hancock", "art-blakey"]
+  },
+  {
+    id: "sonny-rollins",
+    name: "Sonny Rollins",
+    chineseName: "索尼·罗林斯",
+    birthYear: 1930,
+    deathYear: 2020, // (Simplified as historic representation)
+    instrument: "Tenor Saxophone (次中音萨克斯)",
+    birthplace: "New York, USA",
+    style: "Hard Bop / Bebop",
+    shortBio: "硕果仅存的“萨克斯泰斗”与“即兴巨无霸”。他以无比浑厚、充满钢铁质感的音色，以及无穷无尽的“主题即兴变奏（Thematic Improvisation）”能力大放异彩。在1959-1961年间，他在事业巅峰期选择退隐，通宵在威廉斯堡大桥上对着狂风练琴，传为历史佳话。",
+    keyAlbums: [
+      { title: "Saxophone Colossus", year: 1956, description: "爵士萨克斯历史上无可置疑的扛鼎之作，将加勒比切分韵律与硬波普即兴完美融合。" },
+      { title: "The Bridge", year: 1962, description: "下桥复出后的旷世神盘，抛弃了钢琴编制，展现了极致松弛、如钢铁般坚韧的萨克斯线条。" }
+    ],
+    influencedBy: ["coleman-hawkins", "charlie-parker"],
+    collaborators: ["miles-davis", "thelonious-monk"]
+  },
+  {
+    id: "coleman-hawkins",
+    name: "Coleman Hawkins",
+    chineseName: "科尔曼·霍金斯",
+    birthYear: 1904,
+    deathYear: 1969,
+    instrument: "Tenor Saxophone (次中音萨克斯)",
+    birthplace: "Saint Joseph, Missouri, USA",
+    style: "Swing",
+    shortBio: "绰号“鹰（Hawk）”，萨克斯之父。是他将萨克斯从一件滑稽的马戏团滑音玩具，改造为爵士乐中最为威严、深沉、具备交响大提琴般宽广音色的第一独奏乐器。1939年他灌录的《Body and Soul》彻底改写了爵士乐即兴的和弦编织逻辑。",
+    keyAlbums: [
+      { title: "Body and Soul", year: 1939, description: "萨克斯即兴史上的绝对分水岭，用惊世骇俗的琶音上行替代了单纯旋律装饰。" }
+    ],
+    influencedBy: [],
+    collaborators: ["duke-ellington", "charlie-parker", "ben-webster"]
+  },
+  {
+    id: "lester-young",
+    name: "Lester Young",
+    chineseName: "莱斯特·杨",
+    birthYear: 1909,
+    deathYear: 1959,
+    instrument: "Tenor Saxophone (次中音萨克斯)",
+    birthplace: "Woodville, Mississippi, USA",
+    style: "Swing / Cool Jazz",
+    shortBio: "绰号“总统（Prez）”。在霍金斯统治的“威猛、厚重”萨克斯美学之外，杨创造了一种完全相反的、轻盈、舒缓、略带感伤且极度松弛的线性美学。他与歌手Billie Holiday高山流水的深厚情谊与默契合作，是爵士史上的最温柔的诗篇。他直接孕育了冷爵士美学。",
+    keyAlbums: [
+      { title: "Lester Leaps In", year: 1939, description: "与贝西伯爵大乐团强强联合，展现极快速度下无比松弛飘逸的节奏游戏。" }
+    ],
+    influencedBy: [],
+    collaborators: ["count-basie", "billie-holiday"]
+  },
+  {
+    id: "kamasi-washington",
+    name: "Kamasi Washington",
+    chineseName: "卡马西·华盛顿",
+    birthYear: 1981,
+    deathYear: 2026, // Treated as modern alive
+    instrument: "Tenor Saxophone (次中音萨克斯)",
+    birthplace: "Los Angeles, USA",
+    style: "Spiritual Jazz / Fusion / Contemporary",
+    shortBio: "21世纪新伦敦/西海岸爵士复兴运动的核心旗手。他将约翰·柯川的精神爵士、大乐团管弦、嘻哈（Hip-Hop）、福音音乐（Gospel）与电子电气深度糅合，打造出如同史诗歌剧一般、宏大而极富仪式感的现代爵士画卷，将爵士乐重新带回年轻世代的视野。",
+    keyAlbums: [
+      { title: "The Epic", year: 2015, description: "长达三小时的巨幅爵士画卷，席卷全球先锋乐评，宣布新世纪宇宙爵士复兴的到来。" }
+    ],
+    influencedBy: ["john-coltrane", "pharoah-sanders"],
+    collaborators: ["miles-davis"] // Dynamic link
+  },
+  {
+    id: "ravi-coltrane",
+    name: "Ravi Coltrane",
+    chineseName: "拉维·柯川",
+    birthYear: 1965,
+    deathYear: 2026,
+    instrument: "Tenor & Soprano Saxophone (次中音/高音萨克斯)",
+    birthplace: "Long Island, New York, USA",
+    style: "Post-Bop / Contemporary",
+    shortBio: "约翰·柯川与爱丽丝·柯川的次子。他背负着爵士史上最沉重的姓氏，却以极其谦逊、知性、内敛深邃的学院派萨克斯线条走出了一条属于自己的现代爵士道路，深受同行与后辈乐手的敬重。",
+    keyAlbums: [
+      { title: "Spirit Fiction", year: 2012, description: "在Blue Note旗下录制，展现深厚的调式写意底蕴和高度克制的智性即兴。" }
+    ],
+    influencedBy: ["john-coltrane", "wayne-shorter"],
+    collaborators: ["john-coltrane", "mccoy-tyner"]
+  },
+  {
+    id: "booker-little",
+    name: "Booker Little",
+    chineseName: "布克·利特尔",
+    birthYear: 1938,
+    deathYear: 1961,
+    instrument: "Trumpet (小号)",
+    birthplace: "Memphis, Tennessee, USA",
+    style: "Hard Bop / Post-Bop",
+    shortBio: "爵士乐史最令人扼腕叹息的“早逝彗星”与隐藏巨匠。他23岁时因尿毒症不治克服病魔，但在极短的生命中，他创造出了一种极具悲剧内省色彩、极富半音阶张力与宏大忧郁叙事感的小号演奏技术，在当时被公认为唯一能与Miles Davis并立、甚至在和声先锋度上更胜一筹的小号天才。",
+    keyAlbums: [
+      { title: "Booker Little 4 and Max Roach", year: 1958, description: "二十岁时的惊艳初登场，高亢明亮而富有刀锋般锐利张力的小号名盘。" },
+      { title: "Out Front", year: 1961, description: "生命最后的传世孤品，展现了远超时代的先锋铜管不协和和声编排。" }
+    ],
+    influencedBy: ["miles-davis"],
+    collaborators: ["miles-davis", "thelonious-monk"],
+    isHiddenGem: true
+  },
+  {
+    id: "sam-rivers",
+    name: "Sam Rivers",
+    chineseName: "萨姆·里弗斯",
+    birthYear: 1923,
+    deathYear: 2011,
+    instrument: "Soprano & Tenor Saxophone (萨克斯 / 长笛)",
+    birthplace: "El Reno, Oklahoma, USA",
+    style: "Free Jazz / Avant-Garde",
+    shortBio: "现代前卫先锋爵士与自由即兴的“教父”和隐藏瑰宝。他横跨传统硬波普与极端自由爵士，他的演奏如同狂乱的野兽，却又具备极高超的乐理逻辑控制力。在70年代纽约著名的“阁楼爵士运动（Loft Jazz）”中，他出资开办了Studio Rivbea，成为了全球前卫先锋艺术家的乌托邦家园。",
+    keyAlbums: [
+      { title: "Fuchsia Swing Song", year: 1964, description: "Blue Note旗下录制的前卫狂想碑，在波普和弦的边缘进行自由咆哮切分。" }
+    ],
+    influencedBy: ["john-coltrane"],
+    collaborators: ["miles-davis", "john-coltrane"],
+    isHiddenGem: true
+  },
+  {
+    id: "bobby-hutcherson",
+    name: "Bobby Hutcherson",
+    chineseName: "鲍比·哈切森",
+    birthYear: 1941,
+    deathYear: 2016,
+    instrument: "Vibraphone (颤音琴 / 铁琴)",
+    birthplace: "Los Angeles, USA",
+    style: "Post-Bop / Avant-Garde",
+    shortBio: "爵士铁琴史上最伟大的革新者与隐藏珍宝。是他将颤音琴（Vibraphone）彻底从摇摆乐伴奏乐器，转变为能发出虚无缥缈、如同宇宙微光一般，充满后波普冥想与抽象和声色彩的前卫独奏利器。他的演奏如流星雨般璀璨、神秘而通透。",
+    keyAlbums: [
+      { title: "Dialogue", year: 1965, description: "Blue Note前卫时代的惊世巨制，营造出神秘、空灵而又极其致密的宇宙音网。" },
+      { title: "Components", year: 1966, description: "半边浪漫甜美、半边自由抽象的双面写意神盘。" }
+    ],
+    influencedBy: ["bill-evans"],
+    collaborators: ["mccoy-tyner", "miles-davis"],
+    isHiddenGem: true
+  },
+  {
+    id: "andrew-hill",
+    name: "Andrew Hill",
+    chineseName: "安德鲁·希尔",
+    birthYear: 1931,
+    deathYear: 2007,
+    instrument: "Piano / Composer (钢琴 / 作曲家)",
+    birthplace: "Chicago, USA",
+    style: "Avant-Garde / Post-Bop",
+    shortBio: "Blue Note唱片先锋时期的“幕后哲学家”与极度低调的隐藏宗师。他的钢琴作曲如同重叠的梦境，充满不规则的节奏迟滞、扭曲的调性与极其严谨的对位。他的作品由于结构极其怪异艰难，常人极难复制，是专属于核心乐迷的顶级智力拼图。",
+    keyAlbums: [
+      { title: "Point of Departure", year: 1964, description: "后波普先锋即兴史上的神作，联手拆解传统节奏结构。" }
+    ],
+    influencedBy: ["thelonious-monk"],
+    collaborators: ["thelonious-monk", "miles-davis"],
+    isHiddenGem: true
+  },
+  {
+    id: "mal-waldron",
+    name: "Mal Waldron",
+    chineseName: "马尔·瓦尔德隆",
+    birthYear: 1925,
+    deathYear: 2002,
+    instrument: "Piano (钢琴)",
+    birthplace: "New York, USA",
+    style: "Hard Bop / Post-Bop / Avant-Garde",
+    shortBio: "低调至深的“极简主义钢琴宗师”。他早年是传奇爵士名伶比莉·哈乐黛（Billie Holiday）的终身御用伴奏，在哈乐黛凄凉晚年用最深切沉稳的琴声护航。他的个人演奏极具辨识度：几乎不弹华丽的琶音，而是执拗地、一遍遍地用左手弹奏沉重、如雕塑般深邃的极简动机，带有浓烈的存在主义悲剧底色。",
+    keyAlbums: [
+      { title: "The Quest", year: 1961, description: "与Eric Dolphy联手，展现极致阴郁、深邃、宛如哥特式教堂建筑的硬波普先锋碑。" },
+      { title: "Free at Last", year: 1969, description: "传奇厂牌ECM的创始首张录音，极简、静谧、充满张力大面积沉默的终极钢琴神盘。" }
+    ],
+    influencedBy: ["thelonious-monk"],
+    collaborators: ["ella-fitzgerald", "john-coltrane"],
+    isHiddenGem: true
   }
 ];
 

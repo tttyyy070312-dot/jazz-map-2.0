@@ -430,7 +430,7 @@ export default function App() {
                     >
                       <span className="flex items-center gap-1.5">
                         <Layers className="w-3.5 h-3.5" />
-                        <span>大师传承谱系 (Genealogy Web)</span>
+                        <span>爵士宇宙星图 (Jazz Universe)</span>
                       </span>
                       {activeTab === "network" && (
                         <motion.div layoutId="activeWorkspaceTab" className="absolute bottom-0 inset-x-0 h-[2px] bg-[#C9A227]"></motion.div>
@@ -788,6 +788,9 @@ export default function App() {
                           }}
                           currentPlayingTrackId={activeTrackId}
                           isPlaying={isPlayingAudio}
+                          onSelectCity={setActiveCityId}
+                          onSelectClub={setSelectedClubId}
+                          onSwitchTab={setActiveTab}
                         />
                       </motion.div>
                     )}
