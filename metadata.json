@@ -1,0 +1,6 @@
+{
+  "name": "Jazz Atlas",
+  "description": "An interactive digital world map and music history platform. Explore how jazz evolved through cities, historic clubs, and musician genealogies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
