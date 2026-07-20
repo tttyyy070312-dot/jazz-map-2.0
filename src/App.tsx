@@ -28,8 +28,31 @@ import AudioPlayer from "./components/AudioPlayer";
 import ClubExplorer from "./components/ClubExplorer";
 import CityHistoryDetail from "./components/CityHistoryDetail";
 
+const LANDING_QUOTES = [
+  {
+    text: "Seems to me it ain't the world that's so bad but what we're doing to it,and all I'm saying is: see what a wonderful world it would be if only we'd give it a chance. Love, baby - love. That's the secret.",
+    author: "Louis Armstrong"
+  },
+  {
+    text: "The true artform is being a human being.",
+    author: "Herbie Hancock"
+  },
+  {
+    text: "El jazz no es solo música. Es una forma de vida, es una forma de ser, una forma de pensar",
+    author: "Nina Simone"
+  }
+];
+
 export default function App() {
   const [isExploring, setIsExploring] = useState(false);
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuoteIndex((prev) => (prev + 1) % LANDING_QUOTES.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
   const [selectedDecade, setSelectedDecade] = useState(1950); // Start in 1950s (Cool Jazz/Bossa Nova golden era)
   const [activeCityId, setActiveCityId] = useState<string | null>("new-york");
   const [selectedMusicianId, setSelectedMusicianId] = useState<string>("miles-davis");
@@ -207,9 +230,21 @@ export default function App() {
                   JAZZ ATLAS
                 </h1>
                 
-                <p className="text-lg md:text-xl font-serif text-zinc-400 italic font-medium max-w-2xl mx-auto leading-relaxed">
-                  “爵士乐不是一串冷冰冰的年份和人物，而是一种随着城市、空间、迁徙和文化交流不断生长的声音地图。”
-                </p>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={quoteIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-lg md:text-xl font-serif text-zinc-400 italic font-medium max-w-2xl mx-auto leading-relaxed min-h-[160px] md:min-h-[120px] flex flex-col justify-center items-center"
+                  >
+                    <span>“{LANDING_QUOTES[quoteIndex].text}”</span>
+                    <span className="block text-xs font-mono text-[#C9A227] tracking-wider font-bold mt-3 not-italic">
+                      — {LANDING_QUOTES[quoteIndex].author}
+                    </span>
+                  </motion.p>
+                </AnimatePresence>
                 
                 <div className="w-12 h-[1px] bg-[#C9A227]/40 mx-auto my-4"></div>
                 
