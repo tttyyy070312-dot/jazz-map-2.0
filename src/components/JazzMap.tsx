@@ -139,15 +139,34 @@ export default function JazzMap({
         className="absolute inset-0 w-full h-full select-none"
       >
         <defs>
-          {/* Landmass hatching pattern for a vintage archival, high-quality cartography style */}
-          <pattern id="land-hatch" width="1.6" height="1.6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="0" y2="1.6" stroke="#C9A227" strokeWidth="0.12" opacity="0.15" />
-          </pattern>
           {/* Dynamic ocean gradient glow */}
           <radialGradient id="ocean-gradient" cx="50%" cy="50%" r="70%">
             <stop offset="0%" stopColor="#111116" stopOpacity="0.8" />
             <stop offset="100%" stopColor="#08080a" stopOpacity="1" />
           </radialGradient>
+
+          {/* Elegant Linear Gradient for high-fidelity dual-tone landmass pixel dots (Gold to Blue/Teal) */}
+          <linearGradient id="land-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#C9A227" /> {/* Jazz Gold */}
+            <stop offset="35%" stopColor="#E5A93B" /> {/* Warm Amber */}
+            <stop offset="70%" stopColor="#0EA5E9" /> {/* Celestial Ocean Blue */}
+            <stop offset="100%" stopColor="#0D9488" /> {/* High-fidelity Teal-Cyan */}
+          </linearGradient>
+
+          {/* Faint Digital Grid Dot Pattern for background water areas */}
+          <pattern id="grid-dots" width="0.75" height="0.75" patternUnits="userSpaceOnUse">
+            <circle cx="0.375" cy="0.375" r="0.08" fill="#C9A227" opacity="0.12" />
+          </pattern>
+          
+          {/* High-Fidelity Mask Pattern for crisp, non-clipping continuous digital pixel dots */}
+          <pattern id="dot-mask-pattern" width="0.75" height="0.75" patternUnits="userSpaceOnUse">
+            <circle cx="0.375" cy="0.375" r="0.25" fill="white" />
+          </pattern>
+          
+          <mask id="dot-matrix-mask">
+            <rect x="0" y="0" width="100" height="100" fill="black" />
+            <rect x="0" y="0" width="100" height="100" fill="url(#dot-mask-pattern)" />
+          </mask>
         </defs>
 
         {/* Subtle grid latitude / longitude lines */}
@@ -227,65 +246,29 @@ export default function JazzMap({
           <text x="88" y="26.6" fill="#C9A227" fontSize="1.2" fontFamily="monospace" textAnchor="middle" fontWeight="bold">S</text>
         </g>
 
-        {/* Greenland, Iceland, Madagascar, Caribbean, Japan, and major continents are rendered here */}
-        {landmasses.map((land) => (
-          <g key={land.name} id={`land-${land.name.toLowerCase().replace(/\s+/g, "-")}`}>
-            {/* 1. Base dark landmass fill */}
+        {/* Faint overall digital grid dots establishing background pixel structure */}
+        <rect width="100" height="100" fill="url(#grid-dots)" pointerEvents="none" />
+
+        {/* High-Fidelity Dotted World Landmasses with Dynamic Gold-to-Teal-Blue Gradient */}
+        <g mask="url(#dot-matrix-mask)">
+          {landmasses.map((land) => (
             <path
+              key={land.name}
               d={land.d}
-              fill="#121217"
+              fill="url(#land-gradient)"
               opacity="0.95"
             />
-            
-            {/* 2. Elegant vintage diagonal hatching pattern overlay */}
-            <path
-              d={land.d}
-              fill="url(#land-hatch)"
-              opacity="0.5"
-            />
+          ))}
 
-            {/* 3. Shoreline ripple layer (Broad outer glow) */}
-            <path
-              d={land.d}
-              fill="none"
-              stroke="#C9A227"
-              strokeWidth="0.45"
-              strokeOpacity="0.1"
-              pointerEvents="none"
-            />
-
-            {/* 4. Shoreline ripple layer (Mid crisp glow) */}
-            <path
-              d={land.d}
-              fill="none"
-              stroke="#C9A227"
-              strokeWidth="0.25"
-              strokeOpacity="0.2"
-              pointerEvents="none"
-            />
-
-            {/* 5. Crisp archival shoreline hairline */}
-            <path
-              d={land.d}
-              fill="none"
-              stroke="#C9A227"
-              strokeWidth="0.12"
-              strokeOpacity="0.5"
-              pointerEvents="none"
-            />
-          </g>
-        ))}
-
-        {/* Southeast Asia Islands & extra Pacific details */}
-        <path
-          d="M 78,50 Q 82,54 84,60 T 78,65"
-          fill="none"
-          stroke="#C9A227"
-          strokeWidth="0.25"
-          strokeLinecap="round"
-          strokeOpacity="0.3"
-          opacity="0.9"
-        />
+          {/* Southeast Asia Islands & extra Pacific details mapped dynamically in the dot-grid */}
+          <path
+            d="M 78,50 Q 82,54 84,60 T 78,65"
+            fill="none"
+            stroke="url(#land-gradient)"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+          />
+        </g>
         <circle cx="75" cy="55" r="0.4" fill="#C9A227" opacity="0.35" />
         <circle cx="80" cy="58" r="0.4" fill="#C9A227" opacity="0.35" />
         <circle cx="82" cy="62" r="0.4" fill="#C9A227" opacity="0.35" />
